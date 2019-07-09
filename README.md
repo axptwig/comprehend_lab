@@ -29,7 +29,9 @@ The email data is presently stored in a partitioned csv file inside of S3 that w
   1. Open a browser and navigate to the AWS console
   1. Type S3 in the search bar and select the Amazon S3 to be redirected to the service dashboard
   1. Choose *Create Bucket* and enter a unique DNS compliant name for your s3 bucket
+  
     * leave all other options as default and continue through the wizard to configure your bucket
+    
   1. Once your S3 bucket has been successfully created, select the bucket in the table in order to step into the bucket's root directory
   1. Select 'Create Folder' button and create two folders named 'input' and 'output' in the root of the bucket
   1. Once created, select the 'input' folder and step into this directory. 
@@ -47,7 +49,9 @@ In this section we will be making use of AWS Glue to transform our email data in
   1. We are then given two option, we can either crawl a data store (such as s3) or we can update existing tables in the catalog. In this case, our data catalog is currently empty since we are just creating our first crawler. We will need to use this crawler to populate the catalog using the data we previously uploaded to s3. Select the 'data stores' radio button and hit next.
   1. In the next screen, select S3 as your data store and input the s3 path for where our raw data is located. Currently we have 3 discrete folders in s3 that store data from the messages, recipientinfo, and employeelist tables. We will need to point our crawler to the URL for each of these folders. 
     * The URL should look similar to s3://mybucketname/input/messages/
+    
     * WORDING PROBABLY NEEDS TO GET CHANGED HERE*
+    
   1. On the following screen, select 'Yes' for adding another data store and hit next. 
   1. On the this screen add the s3 paths for the remaining 2 folders in s3. Once you have completed adding all three folders as our data sources, hit next. Note: We should in total have 3 'Chosen Data Sources' which is displayed in the right hand side menu.
     * s3://mybucketname/input/employeelist/
