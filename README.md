@@ -74,6 +74,7 @@ In this section we will be making use of AWS Glue to transform our email data in
   1. For the 'input data' section, leave the 'My Documents' radio button selected and enter the path to email dumps in text format found in s3. The path should look something similar to s3://mybucket/output/text/
   1. The Output data section defines where the Comprehend service will output the details of our sentiment analysis job once it completes. Enter the s3 path to the empty sentiment folder in s3. The path should look similar to s3://mybucket/output/sentiment/
   1. Our final step is to create an IAM service role which allows comprehend to access data in your s3 bucket. Select 'Create an IAM role' with permissions to access input and output s3 buckets. Give the role a name and select the orange 'Create Job' button.
+  1. Congrats! You have now kicked off you first sentiment analysis job. The service will take a few minutes to process all the text files and once completed you should recieve a tar.gz file in your specified output location containing the sentiment information for each record.
 ### Preparing Data for Application
 
 ### Viewing the data in the AWS Amplify
