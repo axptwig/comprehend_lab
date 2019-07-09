@@ -48,21 +48,22 @@ In this section we will be making use of AWS Glue to transform our email data in
   1. Give your crawler a name such as emailCrawler and hit next.
   1. We are then given two option, we can either crawl a data store (such as s3) or we can update existing tables in the catalog. In this case, our data catalog is currently empty since we are just creating our first crawler. We will need to use this crawler to populate the catalog using the data we previously uploaded to s3. Select the 'data stores' radio button and hit next.
   1. In the next screen, select S3 as your data store and input the s3 path for where our raw data is located. Currently we have 3 discrete folders in s3 that store data from the messages, recipientinfo, and employeelist tables. We will need to point our crawler to the URL for each of these folders. 
-    * The URL should look similar to s3://mybucketname/input/messages/
-    
-    * WORDING PROBABLY NEEDS TO GET CHANGED HERE*
-    
+    * The URL should look similar to s3://mybucketname/input/messages/   
   1. On the following screen, select 'Yes' for adding another data store and hit next. 
   1. On the this screen add the s3 paths for the remaining 2 folders in s3. Once you have completed adding all three folders as our data sources, hit next. Note: We should in total have 3 'Chosen Data Sources' which is displayed in the right hand side menu.
     * s3://mybucketname/input/employeelist/
     * s3://mybucketname/input/recipientinfo/
-  1. On the 'Choose an IAM role' menu, select 'Create an IAM role' and give it a name before selecting next.
-  1. Leave the "frequency' drop down as the default value of 'on-demand' and select next.
-  1. We have now reached the step where we Configure the crawler's output. To do this, we first must create a database in the Glue data catalog. Select the blue 'add database button' and assign a name to the newly created database.
-    * Make sure you have the newly created database selected as the output destination.
-  1. 
-  1.
+  1. This time, when the add another data store screen loads, select no and hit next.
+  1. On the 'Choose an IAM role' menu, select 'Create an IAM role' and give it a custom name before selecting next.
+  1. Leave the "frequency' drop down as the default value of 'on-demand' and select next. We will be manually running the crawler once it is created + configured. 
+  1. We have now reached the step where we Configure the crawler's output. To do this, we first must create a database in the Glue data catalog. Select the blue 'add database button' and assign a name to our newly created database.
+    * Make sure you have the newly created database selected in the output database dropdown.
+  1. Hit next and finish on the following screen to return back to the main glue crawler page. You should see the crawler you just created in the table on screen. 
+  1. Select the checkbox next to the name of your crawler to select it. Once the check box has been selected, the option to run the crawler at the top of the screen becomes available. Select run crawler to crawl the data stored in s3. The Glue Crawler will populate your output database with metadata information about the crawled tables including file format and schema.
+  1. Wait for the crawler job to complete and your crawler's status returns to Ready.
   
+### ETL with AWS Glue 
+
 ### Amazon Comprehend Configuration
 
 
