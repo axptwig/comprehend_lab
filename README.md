@@ -34,7 +34,9 @@ The email data is presently stored in a partitioned csv file inside of S3 that w
     
   1. Once your S3 bucket has been successfully created, select the bucket in the table in order to step into the bucket's root directory
   1. Select 'Create Folder' button and create two folders named 'input' and 'output' in the root of the bucket
-  1. Once created, select the 'input' folder and step into this directory. 
+  1. Now step into the output folder and create three more folders named, /parquet/, /text/, and /sentiment/.
+  1. Once created, return back to the root directory of your s3 bucket.
+  1. Now select the 'input' folder and step into this directory. 
   1. Upload the email_dump folder containing the email data which we unzipped earlier by dragging and dropping the folder from finder or windows explorer into the browser window.
   1. Select Upload and wait for the files to appear in the bucket.
   1. Congrats, you have now completed the first section of this lab! Move on to configure the ETL process and sentiment analysis jobs.
@@ -62,8 +64,19 @@ In this section we will be making use of AWS Glue to transform our email data in
 ### ETL with AWS Glue 
 
 ### Amazon Comprehend Configuration
+  1. Now that we have successfully performed ETL functions on our data and extracted our message body into text files. we are ready to begin sentiment analysis on the data.
+  1. Once again, select the services drop down from the top left of the screen and search for 'Amazon Comprehend' and navigate to the comprehend service dashboard.
+  1. From the main screen select the orange 'Launch Comprehend' button.
+  1. For this use case, we will be configuring a Comprehend 'Analysis Job'. Start by selecting Analysis Jobs in the left hand side menu.
+  1. Select the orange 'Create Job' to begin configuring our Sentiment Analysis job parameters.
+  1. Give the job a name so you can refer to it's status later in the lab.
+  1. Under 'Analysis Type' select the 'sentiment' option as well as english for the language since our emails are written in american english.
+  1. For the 'input data' section, leave the 'My Documents' radio button selected and enter the path to email dumps in text format found in s3. The path should look something similar to s3://mybucket/output/text/
+  1. The Output data section defines where the Comprehend service will output the details of our sentiment analysis job once it completes. Enter the s3 path to the empty sentiment folder in s3. The path should look similar to s3://mybucket/output/sentiment/
+  1. Our final step is to create an IAM service role which allows comprehend to access data in your s3 bucket. Select 'Create an IAM role' with permissions to access input and output s3 buckets. Give the role a name and select the orange 'Create Job' button.
+### Preparing Data for Application
 
-
+### Viewing the data in the AWS Amplify
   
 
 
