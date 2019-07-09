@@ -6,22 +6,25 @@ You are playing the role of an infrastructure architect and your primary custome
 
 ### The Cloud Engineering Team
 
-The cloud engineering team has put together a set of resources that you can use to build out the workflow. They practice infrastructure as code, so all the components are created using a set of cloudformation scripts that are available in this git repository.
+The cloud engineering team has put together a set of resources that you can use to build out the workflow. They practice infrastructure as code, so all the infrastructure deployed was previously created using a set of cloudformation scripts.
 
-These resources form the basics of the ETL pipeline and make use of services such as Lambda Functions, AWS Glue and Comprehend as well as IAM roles that will be needed to access the services.
-
-When a CloudFormation script completes execution, it returns a set of Outputs that provide details on the resources that were created. 
-
-In order to complete the lab, you will need to be familiar with where to find these outputs and how to use them in the lab. Once you create the CloudFormation stack, spend a little time navigating the console to find these outputs.
+These resources include an S3 bucket with the email data stored in the /input directory as well as a front end application to explore and view the data.
 
 ## Current Challenges
-The email's are currently stored in a csv file that was created from a dump of database. We need to perform some ETL to clean up and join the appropriate columns to display in the application.
+The email data is currently stored in a partitioned csv file that was created from a dump of the master database. Our goal is to perform ETL processes and mold the data into a form where we can submit it to the Comprehend service as well as display the returned information in our application.
 
 
 ## Setup
-
 > ***For this lab, ensure the current AWS region is US East (N. Virginia).***
 
+## High Level Architecture Diagram
+
 ## Workflow Components
+  * Amazon S3
+  * IAM 
+  * AWS Glue
+  * Amazon Comprehend
+  * Amazon Athena
+  * Amazon Quicksight
 
 ## Final Setup
