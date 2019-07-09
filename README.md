@@ -39,9 +39,8 @@ The email data is presently stored in a partitioned csv file inside of S3 that w
   1. Select Upload and wait for the files to appear in the bucket.
   1. Congrats, you have now completed the first section of this lab! Move on to configure the ETL process and sentiment analysis jobs.
 
-### AWS Glue Configuration
+### AWS Glue Crawler Configuration
 In this section we will be making use of AWS Glue to transform our email data into optimized file formats. AWS Glue is a fully managed extract, transform, and load (ETL) service that makes it easy for customers to prepare and load their data for analytics. You can create and run an ETL job with a few clicks in the AWS Management Console. You simply point AWS Glue to your data stored on AWS, and AWS Glue discovers your data and stores the associated metadata (e.g. table definition and schema) in the AWS Glue Data Catalog. Once cataloged, your data is immediately searchable, queryable, and available for ETL. Let's begin!
-
   1. First, select the services drop down menu from the top left corner of the AWS console. Search for 'AWS Glue' and select this option to navigate the the AWS Glue console.
   1. Choose the *Crawlers* option from the left hand side menu. You can use a crawler to populate the AWS Glue Data Catalog with tables. A crawler can crawl multiple data stores in a single run. Upon completion, the crawler creates or updates one or more tables in your Data Catalog. Extract, transform, and load (ETL) jobs that you define in AWS Glue use these Data Catalog tables as sources and targets. The ETL job reads from and writes to the data stores that are specified in the source and target Data Catalog tables.
   1. Select the blue 'Add Crawlers' button to begin configuration
@@ -50,9 +49,7 @@ In this section we will be making use of AWS Glue to transform our email data in
   1. In the next screen, select S3 as your data store and input the s3 path for where our raw data is located. Currently we have 3 discrete folders in s3 that store data from the messages, recipientinfo, and employeelist tables. We will need to point our crawler to the URL for each of these folders. 
     * The URL should look similar to s3://mybucketname/input/messages/   
   1. On the following screen, select 'Yes' for adding another data store and hit next. 
-  1. On the this screen add the s3 paths for the remaining 2 folders in s3. Once you have completed adding all three folders as our data sources, hit next. Note: We should in total have 3 'Chosen Data Sources' which is displayed in the right hand side menu.
-    * s3://mybucketname/input/employeelist/
-    * s3://mybucketname/input/recipientinfo/
+  1. On the this screen add the s3 paths for the remaining 2 folders in s3. Once you have completed adding all three folders as our data sources, hit next. Note: We should in total have 3 'Chosen Data Sources' which is displayed in the right hand side menu.**s3://mybucketname/input/employeelist/**s3://mybucketname/input/recipientinfo/*
   1. This time, when the add another data store screen loads, select no and hit next.
   1. On the 'Choose an IAM role' menu, select 'Create an IAM role' and give it a custom name before selecting next.
   1. Leave the "frequency' drop down as the default value of 'on-demand' and select next. We will be manually running the crawler once it is created + configured. 
