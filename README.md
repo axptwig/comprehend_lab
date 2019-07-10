@@ -4,7 +4,7 @@ Welcome to the Comprehend Email Analysis workshop!
 In this workshop, you will create a data pipeline to extract sentiment information from an email dump and create a network graph to show assocations across an organization.
 
 ## Backstory
-You are playing the role of an infrastructure architect and your primary customers are the analytics and BI teams at your organization. They want to get insight into sentiment information of incoming and outgoing emails and have instructed you to help the cloud engineering team build a POC using a public data set. In the context of this lab, we will be using a [public dataset](http://www.ahschulz.de/enron-email-data/) of the emails from the Enron scandal.
+You are playing the role of an infrastructure architect and your primary customers are the analytics and BI teams at your organization. They want to get insight into sentiment information of incoming and outgoing emails and Fhave instructed you to help the cloud engineering team build a POC using a public data set. In the context of this lab, we will be using a [public dataset](http://www.ahschulz.de/enron-email-data/) of the emails from the Enron scandal.
 
 ## Current Challenges
 The email data is presently stored in a partitioned csv file inside of S3 that was created from a dump of the master database. Our goal is to perform ETL processes and mold the data into a form where we can submit it to the Comprehend service as well as display the returned information in our application. Since we are working with such a large amount of emails, we will be submitting jobs to Amazon Comprehend using the [Asynchronous Batch Processing](https://docs.aws.amazon.com/comprehend/latest/dg/how-async.html) api call to submit our jobs. Since our data is stored in partitioned CSV and Amazon comprehend only accepts raw text files, we need to extract the email body, recipient info, and sentiment from the email dump in order to feed this data into our hosted application.
@@ -29,7 +29,6 @@ The email data is presently stored in a partitioned csv file inside of S3 that w
   1. Open a browser and navigate to the AWS console
   1. Type S3 in the search bar and select the Amazon S3 to be redirected to the service dashboard
   1. Choose *Create Bucket* and enter a unique DNS compliant name for your s3 bucket
-  
     * leave all other options as default and continue through the wizard to configure your bucket
     
   1. Once your S3 bucket has been successfully created, select the bucket in the table in order to step into the bucket's root directory
@@ -65,7 +64,7 @@ In this section we will be making use of AWS Glue to transform our email data in
   1. Leave the "frequency' drop down as the default value of 'on-demand' and select next. We will be manually running the crawler once it is created + configured. 
   1. We have now reached the step where we Configure the crawler's output. To do this, we first must create a database in the Glue data catalog. Select the blue 'add database button' and assign a name to our newly created database.
     * Make sure you have the newly created database selected in the output database dropdown.
-    ![Glue_output](./images/Glue_Crawler_Output.png)
+    ![Glue_output](./images/Glue_Crawler_output.png)
   1. Hit next and finish on the following screen to return back to the main glue crawler page. You should see the crawler you just created in the table on screen. 
   1. Select the checkbox next to the name of your crawler to select it. Once the check box has been selected, the option to run the crawler at the top of the screen becomes available. Select run crawler to crawl the data stored in s3. The Glue Crawler will populate your output database with metadata information about the crawled tables including file format and schema.
   1. Wait for the crawler job to complete and your crawler's status returns to Ready.
