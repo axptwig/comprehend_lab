@@ -34,6 +34,7 @@ The email data is presently stored in a partitioned csv file inside of S3 that w
     
   1. Once your S3 bucket has been successfully created, select the bucket in the table in order to step into the bucket's root directory
   1. Select 'Create Folder' button and create two folders named 'input' and 'output' in the root of the bucket. Leave all encryption options as default.
+  ![s3_root_struct](./images/S3_Root_Structure.png)
   1. Now step into the output folder and create three more folders named, /parquet/, /text/, and /sentiment/.
   1. Once created, return back to the root directory of your s3 bucket.
   1. Now select the 'input' folder and step into this directory. 
