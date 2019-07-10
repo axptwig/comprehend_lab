@@ -55,7 +55,7 @@ In this section we will be making use of AWS Glue to transform our email data in
     ![s3_root_struct](./images/Glue_Source_Type.png)
   1. In the next screen, select S3 as your data store and input the s3 path for where our raw data is located. Currently we have 3 discrete folders in s3 that store data from the messages, recipientinfo, and employeelist tables. We will need to point our crawler to the URL for each of these folders. 
     * The URL should look similar to s3://mybucketname/input/messages/  
-    ![Glue_output](./images/Glue_Add_Data.png)
+    ![Glue_outputs](./images/Glue_Add_Data.png)
   1. On the following screen, select 'Yes' for adding another data store and hit next. 
   1. On the this screen add the s3 paths for the remaining 2 folders in s3. Once you have completed adding all three folders as our data sources, hit next. Note: We should in total have 3 'Chosen Data Sources' which is displayed in the right hand side menu.**s3://mybucketname/input/employeelist/**s3://mybucketname/input/recipientinfo/*
   ![Glue_output](./images/Glue_three_stores.png)
