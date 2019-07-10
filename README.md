@@ -78,10 +78,14 @@ In this section we will be making use of AWS Glue to transform our email data in
   1. From the main screen select the orange 'Launch Comprehend' button.
   1. For this use case, we will be configuring a Comprehend 'Analysis Job'. Start by selecting Analysis Jobs in the left hand side menu.
   1. Select the orange 'Create Job' to begin configuring our Sentiment Analysis job parameters.
+    ![comprehend_job](./images/Comprehend_Create_Job.png)  
   1. Give the job a name so you can refer to it's status later in the lab.
   1. Under 'Analysis Type' select the 'sentiment' option as well as english for the language since our emails are written in american english.
-  1. For the 'input data' section, leave the 'My Documents' radio button selected and enter the path to email dumps in text format found in s3. The path should look something similar to s3://mybucket/output/text/
+    ![comprehend_job](./images/Comprehend_Job_Settings.png)  
+  1. For the 'input data' section, leave the 'My Documents' radio button selected and enter the path to email dumps in text format found in s3. The path should look something similar to s3://mybucket/input/sentiment/
+    ![comprehend_job](./images/Comprehend_Input_Data.png)  
   1. The Output data section defines where the Comprehend service will output the details of our sentiment analysis job once it completes. Enter the s3 path to the empty sentiment folder in s3. The path should look similar to s3://mybucket/output/sentiment/
+    ![comprehend_job](./images/Comprehend_Output_Data.png)  
   1. Our final step is to create an IAM service role which allows comprehend to access data in your s3 bucket. Select 'Create an IAM role' with permissions to access input and output s3 buckets. Give the role a name and select the orange 'Create Job' button.
   1. Congrats! You have now kicked off you first sentiment analysis job. The service will take a few minutes to process all the text files and once completed you should recieve a tar.gz file in your specified output location containing the sentiment information for each record.
 ### Preparing Data for Application
