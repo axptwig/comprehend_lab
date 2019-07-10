@@ -36,10 +36,12 @@ The email data is presently stored in a partitioned csv file inside of S3 that w
   1. Select 'Create Folder' button and create two folders named 'input' and 'output' in the root of the bucket. Leave all encryption options as default.
   ![s3_root_struct](./images/S3_Root_Structure.png)
   1. Now step into the output folder and create three more folders named, /parquet/, /text/, and /sentiment/.
+  ![input_struct](./images/S3_Output_Structure.png)
   1. Once created, return back to the root directory of your s3 bucket.
   1. Now select the 'input' folder and step into this directory. 
   1. Upload the email_dump folder containing the email data which we unzipped earlier by dragging and dropping the folder from finder or windows explorer into the browser window.
   1. Select Upload and wait for the files to appear in the bucket.
+  ![s3_comprehennd_struct](./images/S3_Comprehend_Input.png)
   1. Congrats, you have now completed the first section of this lab! Move on to configure the ETL process and sentiment analysis jobs.
 
 ### AWS Glue Crawler Configuration
@@ -47,17 +49,23 @@ In this section we will be making use of AWS Glue to transform our email data in
   1. First, select the services drop down menu from the top left corner of the AWS console. Search for 'AWS Glue' and select this option to navigate the the AWS Glue console.
   1. Choose the *Crawlers* option from the left hand side menu. You can use a crawler to populate the AWS Glue Data Catalog with tables. A crawler can crawl multiple data stores in a single run. Upon completion, the crawler creates or updates one or more tables in your Data Catalog. Extract, transform, and load (ETL) jobs that you define in AWS Glue use these Data Catalog tables as sources and targets. The ETL job reads from and writes to the data stores that are specified in the source and target Data Catalog tables.
   1. Select the blue 'Add Crawlers' button to begin configuration
+  ![s3_root_struct](./images/Glue_Add_Crawler.png)
   1. Give your crawler a name such as emailCrawler and hit next.
   1. We are then given two option, we can either crawl a data store (such as s3) or we can update existing tables in the catalog. In this case, our data catalog is currently empty since we are just creating our first crawler. We will need to use this crawler to populate the catalog using the data we previously uploaded to s3. Select the 'data stores' radio button and hit next.
+    ![s3_root_struct](./images/Glue_Source_Type.png)
   1. In the next screen, select S3 as your data store and input the s3 path for where our raw data is located. Currently we have 3 discrete folders in s3 that store data from the messages, recipientinfo, and employeelist tables. We will need to point our crawler to the URL for each of these folders. 
-    * The URL should look similar to s3://mybucketname/input/messages/   
+    * The URL should look similar to s3://mybucketname/input/messages/  
+    ![Glue_output](./images/Glue_Add_Data.png)
   1. On the following screen, select 'Yes' for adding another data store and hit next. 
   1. On the this screen add the s3 paths for the remaining 2 folders in s3. Once you have completed adding all three folders as our data sources, hit next. Note: We should in total have 3 'Chosen Data Sources' which is displayed in the right hand side menu.**s3://mybucketname/input/employeelist/**s3://mybucketname/input/recipientinfo/*
+  ![Glue_output](./images/Glue_three_stores.png)
   1. This time, when the add another data store screen loads, select no and hit next.
   1. On the 'Choose an IAM role' menu, select 'Create an IAM role' and give it a custom name before selecting next.
+  ![Glue_output](./images/Glue_IAM_Role.png)
   1. Leave the "frequency' drop down as the default value of 'on-demand' and select next. We will be manually running the crawler once it is created + configured. 
   1. We have now reached the step where we Configure the crawler's output. To do this, we first must create a database in the Glue data catalog. Select the blue 'add database button' and assign a name to our newly created database.
     * Make sure you have the newly created database selected in the output database dropdown.
+    ![Glue_output](./images/Glue_Crawler_Output.png)
   1. Hit next and finish on the following screen to return back to the main glue crawler page. You should see the crawler you just created in the table on screen. 
   1. Select the checkbox next to the name of your crawler to select it. Once the check box has been selected, the option to run the crawler at the top of the screen becomes available. Select run crawler to crawl the data stored in s3. The Glue Crawler will populate your output database with metadata information about the crawled tables including file format and schema.
   1. Wait for the crawler job to complete and your crawler's status returns to Ready.
