@@ -10,7 +10,7 @@ You are playing the role of an infrastructure architect and your primary custome
 The email data is presently stored in a partitioned csv file inside of S3 that was created from a dump of the master database. Our goal is to perform ETL processes and mold the data into a form where we can submit it to the Comprehend service as well as display the returned information in our application. Since we are working with such a large amount of emails, we will be submitting jobs to Amazon Comprehend using the [Asynchronous Batch Processing](https://docs.aws.amazon.com/comprehend/latest/dg/how-async.html) api call to submit our jobs. Since our data is stored in partitioned CSV and Amazon comprehend only accepts raw text files, we need to extract the email body, recipient info, and sentiment from the email dump in order to feed this data into our hosted application.
 
 ## High Level Architecture Diagram
-
+    ![arch](./images/Architecture.png)  
 ## Workflow Components
   * Amazon S3
   * IAM 
